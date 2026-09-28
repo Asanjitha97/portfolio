@@ -1466,7 +1466,7 @@
             <!-- Interactive Gallery on Left / Top -->
             <div class="spotlight-gallery">
               <div class="gallery-main-view" id="robot-main-view" onclick="openLightboxFromMain()" title="Click to expand high-resolution image">
-                <img id="robot-main-img" src="images/robot_hardware_prototype.jpg" alt="Pick And Place Robot Manipulator - Physical Hardware Prototype" />
+                <img id="robot-main-img" src="robot_hardware_prototype.jpg" alt="Pick And Place Robot Manipulator - Physical Hardware Prototype" />
                 <div class="gallery-zoom-hint">
                   <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path></svg>
                   <span>Click to Expand</span>
@@ -1475,16 +1475,16 @@
 
               <!-- Thumbnails Selector -->
               <div class="gallery-thumbs">
-                <button type="button" class="gallery-thumb-btn active" onclick="switchRobotImage(0, 'images/robot_hardware_prototype.jpg', 'Physical Prototype: Assembled manipulator arm with acrylic turntable base, servo joints, end-effector gripper, and planar test board.', 'Physical Prototype')">
-                  <img src="images/robot_hardware_prototype.jpg" alt="Physical Hardware Prototype" />
+                <button type="button" class="gallery-thumb-btn active" onclick="switchRobotImage(0, 'robot_hardware_prototype.jpg', 'Physical Prototype: Assembled manipulator arm with acrylic turntable base, servo joints, end-effector gripper, and planar test board.', 'Physical Prototype')">
+                  <img src="robot_hardware_prototype.jpg" alt="Physical Hardware Prototype" />
                   <span>1. Prototype</span>
                 </button>
                 <button type="button" class="gallery-thumb-btn" onclick="switchRobotImage(1, 'images/robot_arm_cad_model.jpg', 'SolidWorks 3D CAD: Kinematic modeling of the articulated manipulator arm showing dual-shoulder actuators, elbow, wrist pitch, gripper rotation, and base turntable.', 'SolidWorks 3D CAD')">
-                  <img src="images/robot_arm_cad_model.jpg" alt="SolidWorks 3D CAD Model" />
+                  <img src="robot_arm_cad_model.jpg" alt="SolidWorks 3D CAD Model" />
                   <span>2. CAD Model</span>
                 </button>
-                <button type="button" class="gallery-thumb-btn" onclick="switchRobotImage(2, 'images/robot_circuit_schematic.jpg', 'Circuit Schematic: Arduino Uno microcontroller driving 7 servos (M1-M7), HC-SR04 ultrasonic range sensor, LCD 1602 I2C display, 5V 20A power bus, and status indicator.', 'Circuit Schematic')">
-                  <img src="images/robot_circuit_schematic.jpg" alt="Circuit Schematic & Wiring" />
+                <button type="button" class="gallery-thumb-btn" onclick="switchRobotImage(2, 'robot_circuit_schematic.jpg', 'Circuit Schematic: Arduino Uno microcontroller driving 7 servos (M1-M7), HC-SR04 ultrasonic range sensor, LCD 1602 I2C display, 5V 20A power bus, and status indicator.', 'Circuit Schematic')">
+                  <img src="robot_circuit_schematic.jpg" alt="Circuit Schematic & Wiring" />
                   <span>3. Schematic</span>
                 </button>
               </div>
@@ -2002,7 +2002,7 @@
         </button>
       </div>
       <div class="modal-image-container">
-        <img id="modal-image-src" src="images/robot_hardware_prototype.jpg" alt="Pick And Place Robot Manipulator Media" />
+        <img id="modal-image-src" src="robot_hardware_prototype.jpg" alt="Pick And Place Robot Manipulator Media" />
       </div>
       <div class="modal-caption" id="modal-image-caption">
         Physical prototype in testing environment: Multi-axis articulated manipulator arm mounted on a dual-tier circular acrylic base with ball transfer bearings, 7 servo motors, gripper claw, and coordinate test board with target container.
@@ -2066,17 +2066,17 @@
     // Robot Manipulator Gallery & Lightbox
     const robotGalleryData = [
       {
-        src: 'images/robot_hardware_prototype.jpg',
+        src: 'robot_hardware_prototype.jpg',
         title: 'Pick And Place Robot Manipulator — Hardware Prototype',
         caption: 'Physical prototype in testing environment: Multi-axis articulated manipulator arm mounted on a dual-tier circular acrylic base with ball transfer bearings, 7 servo motors, gripper claw, and coordinate test board with target container.'
       },
       {
-        src: 'images/robot_arm_cad_model.jpg',
+        src: 'robot_arm_cad_model.jpg',
         title: 'Pick And Place Robot Manipulator — SolidWorks 3D CAD Model',
         caption: 'SolidWorks 3D CAD parametric kinematic model showing structural acrylic linkages, dual-shoulder actuator mounts, elbow articulation, wrist pitch, gripper rotation coupling, and base turntable assembly.'
       },
       {
-        src: 'images/robot_circuit_schematic.jpg',
+        src: 'robot_circuit_schematic.jpg',
         title: 'Pick And Place Robot Manipulator — Circuit & Wiring Schematic',
         caption: 'Comprehensive wiring schematic: Arduino Uno microcontroller driving 7 servos (M1-M7), HC-SR04 ultrasonic distance sensor, I2C LCD 1602 display, dedicated 5V 20A power supply bus, and status indicator lamp (H1).'
       }
