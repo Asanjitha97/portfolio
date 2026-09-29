@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Asanjitha Methnuwan Jayasekara | Engineering & Industrial Analytics Portfolio</title>
   <meta name="description" content="Portfolio of Asanjitha Jayasekara - Mechatronics Engineer and M.Sc. candidate in Industrial Analytics at Uppsala University. Specialized in mechanical dynamics, industrial AI, and optimization." />
   
@@ -66,6 +66,11 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button, a {
+      touch-action: manipulation;
     }
 
     html {
@@ -663,8 +668,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
       border-top: 1px solid var(--border);
       padding-top: 18px;
+    }
+
+    .project-footer span {
+      overflow-wrap: anywhere;
     }
 
     .project-link {
@@ -696,11 +707,24 @@
       overflow: hidden;
     }
 
+    .spotlight-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
     @media (max-width: 992px) {
       .project-card.spotlight {
         grid-template-columns: 1fr;
         gap: 28px;
         padding: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .spotlight-title {
+        font-size: 1.3rem;
       }
     }
 
@@ -1157,7 +1181,7 @@
       padding: 12px 16px;
       color: var(--text);
       font-family: inherit;
-      font-size: 0.95rem;
+      font-size: 16px;
       transition: var(--transition);
       outline: none;
     }
@@ -1201,38 +1225,555 @@
       transform: translateY(0);
     }
 
-    /* Responsive */
+    /* Experience & Education Grid */
+    .experience-education-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    /* Mobile Navigation Button (Hamburger) */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      padding: 0;
+      gap: 5px;
+      transition: var(--transition);
+      z-index: 102;
+      flex-shrink: 0;
+    }
+
+    .hamburger-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .hamburger-line {
+      width: 20px;
+      height: 2px;
+      background-color: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, width 0.3s ease;
+    }
+
+    .hamburger-btn.active .hamburger-line:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger-btn.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger-btn.active .hamburger-line:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile Nav Drawer & Backdrop */
+    .mobile-nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 7, 13, 0.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 150;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-nav-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-nav-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(88vw, 360px);
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border);
+      z-index: 160;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px 20px;
+      padding-top: max(24px, env(safe-area-inset-top));
+      padding-bottom: max(24px, env(safe-area-inset-bottom));
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      overflow-y: auto;
+    }
+
+    .mobile-nav-drawer.active {
+      transform: translateX(0);
+    }
+
+    [data-theme="light"] .mobile-nav-drawer {
+      background: var(--bg-surface);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .mobile-nav-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-nav-close {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .mobile-nav-close:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .mobile-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 24px 0;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .mobile-nav-link .nav-num {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--primary);
+      opacity: 0.85;
+    }
+
+    .mobile-nav-link:hover, .mobile-nav-link.active {
+      background: var(--bg-surface-elevated);
+      color: var(--text);
+    }
+
+    .mobile-nav-link.active {
+      color: var(--primary);
+      border-left: 3px solid var(--primary);
+    }
+
+    .mobile-nav-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    .mobile-nav-contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.85rem;
+    }
+
+    .mobile-nav-contact-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      word-break: break-all;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mobile-nav-contact-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Floating Back to Top Button */
+    .back-to-top-btn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(14px);
+      transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    .back-to-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top-btn:hover {
+      background: var(--primary);
+      color: #090d16;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Responsive Media Queries */
     @media (max-width: 992px) {
       .hero-grid {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 36px;
       }
       .contact-card {
         grid-template-columns: 1fr;
+        gap: 36px;
+      }
+      .experience-education-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
       .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
+      }
+    }
+
+    @media (max-width: 860px) {
+      nav.nav-links {
+        display: none;
+      }
+      .hamburger-btn {
+        display: flex;
       }
     }
 
     @media (max-width: 768px) {
-      nav.nav-links {
-        display: none;
+      section {
+        padding: 56px 0;
+      }
+      section.hero {
+        padding: 44px 0 32px;
+      }
+      .section-header {
+        margin-bottom: 32px;
+      }
+      .section-title {
+        font-size: 1.85rem;
+      }
+      .section-subtitle {
+        font-size: 0.98rem;
       }
       .hero-title {
-        font-size: 2.1rem;
+        font-size: clamp(2rem, 6.5vw, 2.5rem);
       }
-      .hero-highlights {
-        grid-template-columns: 1fr;
+      .hero-desc {
+        font-size: 1rem;
+        margin-bottom: 24px;
       }
       .projects-grid {
         grid-template-columns: 1fr;
       }
+      .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+      }
       .publication-banner {
-        padding: 24px;
+        padding: 28px 22px;
+      }
+      .pub-title {
+        font-size: 1.35rem;
       }
       .contact-card {
-        padding: 28px 20px;
+        padding: 32px 22px;
+      }
+      .contact-info h3 {
+        font-size: 1.55rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-actions .nav-cta-btn {
+        display: none;
+      }
+      .brand-tag {
+        display: none;
+      }
+      .filter-bar {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        gap: 8px;
+        margin-bottom: 24px;
+        padding-bottom: 8px;
+        scrollbar-width: none;
+      }
+      .filter-bar::-webkit-scrollbar {
+        display: none;
+      }
+      .filter-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+        padding: 7px 15px;
+        font-size: 0.82rem;
+      }
+      .hero-highlights {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .highlight-item h4 {
+        font-size: 1.25rem;
+      }
+      .highlight-item p {
+        font-size: 0.72rem;
+      }
+      .pub-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 12px;
+      }
+      .pub-actions .btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
+      .project-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .project-footer .btn,
+      .project-footer .project-link {
+        width: 100%;
+        justify-content: center;
+      }
+      #copy-toast {
+        left: 16px;
+        right: 16px;
+        bottom: 20px;
+        max-width: calc(100% - 32px);
+        text-align: center;
+      }
+      .modal-overlay {
+        padding: 12px 8px;
+      }
+      .modal-content {
+        padding: 16px 14px;
+        gap: 12px;
+        max-height: 94vh;
+        border-radius: var(--radius-md);
+      }
+      .modal-header .modal-title {
+        font-size: 0.95rem;
+        line-height: 1.3;
+      }
+      .modal-close-btn {
+        width: 40px;
+        height: 40px;
+      }
+      .modal-image-container {
+        min-height: 180px;
+        max-height: 50vh;
+      }
+      .modal-caption {
+        font-size: 0.8rem;
+        line-height: 1.4;
+        max-height: 18vh;
+        overflow-y: auto;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+      }
+      section {
+        padding: 44px 0;
+      }
+      .section-title {
+        font-size: 1.55rem;
+      }
+      .hero-title {
+        font-size: 1.85rem;
+      }
+      .hero-cta {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+      }
+      .hero-cta .btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero-highlights {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .hero-highlights .highlight-item {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        border-bottom: 1px dashed var(--border);
+        padding-bottom: 6px;
+      }
+      .hero-card {
+        padding: 20px 16px;
+      }
+      .profile-header {
+        gap: 14px;
+        margin-bottom: 16px;
+      }
+      .profile-avatar-large {
+        width: 68px;
+        height: 68px;
+      }
+      .profile-info h3 {
+        font-size: 1.2rem;
+      }
+      .profile-info p {
+        font-size: 0.78rem;
+      }
+      .card-tags {
+        gap: 6px;
+        margin-bottom: 16px;
+      }
+      .tag-pill {
+        font-size: 0.72rem;
+        padding: 4px 10px;
+      }
+      .info-list {
+        gap: 10px;
+        padding-top: 14px;
+      }
+      .info-row {
+        font-size: 0.82rem;
+      }
+      .timeline-container {
+        padding-left: 20px;
+        gap: 28px;
+      }
+      .timeline-dot {
+        left: -29px;
+        width: 14px;
+        height: 14px;
+        top: 5px;
+      }
+      .timeline-role {
+        font-size: 1.1rem;
+      }
+      .timeline-company {
+        font-size: 0.88rem;
+      }
+      .timeline-desc, .timeline-bullets {
+        font-size: 0.86rem;
+      }
+      .project-card {
+        padding: 20px 16px;
+      }
+      .project-card.featured {
+        padding-top: 50px;
+      }
+      .project-card.spotlight {
+        padding: 18px 14px;
+        gap: 20px;
+      }
+      .gallery-thumb-btn {
+        padding: 4px;
+        gap: 4px;
+      }
+      .gallery-thumb-btn img {
+        height: 46px;
+      }
+      .gallery-thumb-btn span {
+        font-size: 0.65rem;
+      }
+      .contact-card {
+        padding: 24px 16px;
+      }
+      .contact-methods {
+        gap: 12px;
+      }
+      .contact-box {
+        padding: 12px 14px;
+        gap: 12px;
+      }
+      .contact-text-label {
+        font-size: 0.7rem;
+      }
+      .contact-text-val {
+        font-size: 0.88rem;
+      }
+      .modal-overlay {
+        padding: 10px 8px;
+      }
+      .modal-content {
+        padding: 16px 12px;
+      }
+      .modal-title {
+        font-size: 0.92rem;
+      }
+      .modal-image-container {
+        min-height: 160px;
+        max-height: 48vh;
+      }
+      .modal-caption {
+        font-size: 0.78rem;
+      }
+      .back-to-top-btn {
+        bottom: 16px;
+        right: 16px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero-title {
+        font-size: 1.65rem;
+      }
+      .brand-name {
+        font-size: 0.95rem;
+      }
+      .brand-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -1269,10 +1810,57 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
           </svg>
         </button>
-        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="#contact" class="btn btn-primary nav-cta-btn">Get in Touch</a>
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Navigation Drawer & Overlay -->
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  <aside class="mobile-nav-drawer" id="mobile-nav" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="mobile-nav-header">
+      <a href="#" class="brand" onclick="closeMobileNav()">
+        <div class="brand-avatar">AJ</div>
+        <div class="brand-text">
+          <span class="brand-name">Asanjitha Jayasekara</span>
+          <span class="brand-tag">Mechatronics & Analytics</span>
+        </div>
+      </a>
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation menu">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-nav-links">
+      <a href="#about" class="mobile-nav-link"><span class="nav-num">01</span> About</a>
+      <a href="#competencies" class="mobile-nav-link"><span class="nav-num">02</span> Competencies</a>
+      <a href="#projects" class="mobile-nav-link"><span class="nav-num">03</span> Projects</a>
+      <a href="#experience" class="mobile-nav-link"><span class="nav-num">04</span> Experience & Edu</a>
+      <a href="#publications" class="mobile-nav-link"><span class="nav-num">05</span> Publications</a>
+      <a href="#contact" class="mobile-nav-link"><span class="nav-num">06</span> Contact</a>
+    </nav>
+    <div class="mobile-nav-footer">
+      <a href="#contact" class="btn btn-primary" onclick="closeMobileNav()" style="width: 100%; justify-content: center;">
+        Get in Touch
+      </a>
+      <div class="mobile-nav-contact-links">
+        <a href="mailto:masanjitha3@gmail.com">
+          <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          masanjitha3@gmail.com
+        </a>
+        <a href="tel:+46737040760">
+          <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          +46 73 704 07 60
+        </a>
+      </div>
+    </div>
+  </aside>
 
   <main>
     <!-- Hero Section -->
@@ -1320,7 +1908,7 @@
         <div class="hero-card">
           <div class="profile-header" style="margin-bottom: 20px;">
             <div class="profile-info">
-              <h3 style="font-size: 1.45rem;">Asanjitha M. Jayasekara</h3>
+              <h3>Asanjitha M. Jayasekara</h3>
               <p style="font-weight: 600; color: var(--primary); font-size: 0.92rem; margin-top: 4px;">Industrial Analytics M.Sc. Candidate <span style="font-weight: 400; color: var(--text-muted); font-size: 0.84rem;">(Uppsala University)</span></p>
               <p style="font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; font-weight: 500;">Mechatronics (Hons) &bull; AI, Control Systems &amp; Smart Manufacturing</p>
             </div>
@@ -1346,7 +1934,7 @@
             </div>
             <div class="info-row">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
-              <a href="https://www.linkedin.com/in/asanjitha/" target="_blank" rel="noopener">LinkedIn Profile</a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn Profile</a>
             </div>
             <div class="info-row">
               <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
@@ -1466,7 +2054,7 @@
             <!-- Interactive Gallery on Left / Top -->
             <div class="spotlight-gallery">
               <div class="gallery-main-view" id="robot-main-view" onclick="openLightboxFromMain()" title="Click to expand high-resolution image">
-                <img id="robot-main-img" src="robot_hardware_prototype.jpg" alt="Pick And Place Robot Manipulator - Physical Hardware Prototype" />
+                <img id="robot-main-img" src="robot_hardware_prototype.jpg" alt="Pick And Place Robot Manipulator - Physical Hardware Prototype" onerror="handleImgFallback(this)" />
                 <div class="gallery-zoom-hint">
                   <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path></svg>
                   <span>Click to Expand</span>
@@ -1476,15 +2064,15 @@
               <!-- Thumbnails Selector -->
               <div class="gallery-thumbs">
                 <button type="button" class="gallery-thumb-btn active" onclick="switchRobotImage(0, 'robot_hardware_prototype.jpg', 'Physical Prototype: Assembled manipulator arm with acrylic turntable base, servo joints, end-effector gripper, and planar test board.', 'Physical Prototype')">
-                  <img src="robot_hardware_prototype.jpg" alt="Physical Hardware Prototype" />
+                  <img src="robot_hardware_prototype.jpg" alt="Physical Hardware Prototype" onerror="handleImgFallback(this)" />
                   <span>1. Prototype</span>
                 </button>
-                <button type="button" class="gallery-thumb-btn" onclick="switchRobotImage(1, 'images/robot_arm_cad_model.jpg', 'SolidWorks 3D CAD: Kinematic modeling of the articulated manipulator arm showing dual-shoulder actuators, elbow, wrist pitch, gripper rotation, and base turntable.', 'SolidWorks 3D CAD')">
-                  <img src="robot_arm_cad_model.jpg" alt="SolidWorks 3D CAD Model" />
+                <button type="button" class="gallery-thumb-btn" onclick="switchRobotImage(1, 'robot_arm_cad_model.jpg', 'SolidWorks 3D CAD: Kinematic modeling of the articulated manipulator arm showing dual-shoulder actuators, elbow, wrist pitch, gripper rotation, and base turntable.', 'SolidWorks 3D CAD')">
+                  <img src="robot_arm_cad_model.jpg" alt="SolidWorks 3D CAD Model" onerror="handleImgFallback(this)" />
                   <span>2. CAD Model</span>
                 </button>
                 <button type="button" class="gallery-thumb-btn" onclick="switchRobotImage(2, 'robot_circuit_schematic.jpg', 'Circuit Schematic: Arduino Uno microcontroller driving 7 servos (M1-M7), HC-SR04 ultrasonic range sensor, LCD 1602 I2C display, 5V 20A power bus, and status indicator.', 'Circuit Schematic')">
-                  <img src="robot_circuit_schematic.jpg" alt="Circuit Schematic & Wiring" />
+                  <img src="robot_circuit_schematic.jpg" alt="Circuit Schematic & Wiring" onerror="handleImgFallback(this)" />
                   <span>3. Schematic</span>
                 </button>
               </div>
@@ -1494,7 +2082,7 @@
             <div style="display:flex; flex-direction:column; justify-content:space-between;">
               <div>
             
-                <h3 style="font-size:1.6rem; margin-bottom:12px; line-height: 1.3;">Pick And Place Robot Manipulator</h3>
+                <h3 class="spotlight-title">Pick And Place Robot Manipulator</h3>
                 <p style="font-size:0.95rem; line-height:1.7; margin-bottom:18px;">
                   The objective of this project is to develop a robotic manipulator system capable of achieving a specified target while accurately detecting the correct container containing a table tennis ball. Utilizing an Arduino-based controller to control the robotic manipulator's movements and decision-making processes, the system performs precise and controlled multi-axis actions to reach desired spatial coordinates. By incorporating advanced ultrasonic sensing techniques and intelligent algorithms, the system reliably identifies the correct container with high accuracy, executing smooth, closed-loop pick-and-place manipulation.
                 </p>
@@ -1780,7 +2368,7 @@
     <!-- Experience & Education -->
     <section id="experience">
       <div class="container">
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 48px;">
+        <div class="experience-education-grid">
           <!-- Left: Professional Experience -->
           <div>
             <div class="section-header">
@@ -1992,6 +2580,13 @@
 
   <div id="copy-toast">Copied to clipboard!</div>
 
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top" class="back-to-top-btn" title="Back to top" aria-label="Back to top">
+    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/>
+    </svg>
+  </button>
+
   <!-- Lightbox Modal for High-Resolution Media -->
   <div class="modal-overlay" id="image-modal" onclick="closeLightboxOnBackdrop(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
@@ -2002,7 +2597,7 @@
         </button>
       </div>
       <div class="modal-image-container">
-        <img id="modal-image-src" src="robot_hardware_prototype.jpg" alt="Pick And Place Robot Manipulator Media" />
+        <img id="modal-image-src" src="robot_hardware_prototype.jpg" alt="Pick And Place Robot Manipulator Media" onerror="handleImgFallback(this)" />
       </div>
       <div class="modal-caption" id="modal-image-caption">
         Physical prototype in testing environment: Multi-axis articulated manipulator arm mounted on a dual-tier circular acrylic base with ball transfer bearings, 7 servo motors, gripper claw, and coordinate test board with target container.
@@ -2063,6 +2658,18 @@
       });
     });
 
+    // Image fallback handler for flexible folder structures (root vs images/)
+    function handleImgFallback(img) {
+      if (!img || img.dataset.triedFallback) return;
+      img.dataset.triedFallback = 'true';
+      const currentSrc = img.getAttribute('src') || '';
+      if (currentSrc.startsWith('images/')) {
+        img.src = currentSrc.replace(/^images\//, '');
+      } else {
+        img.src = 'images/' + currentSrc;
+      }
+    }
+
     // Robot Manipulator Gallery & Lightbox
     const robotGalleryData = [
       {
@@ -2086,10 +2693,14 @@
 
     function switchRobotImage(index, src, caption, shortTitle) {
       currentRobotIndex = index;
+      const data = robotGalleryData[index];
       const mainImg = document.getElementById('robot-main-img');
       if (mainImg) {
-        mainImg.src = src;
-        mainImg.alt = shortTitle;
+        delete mainImg.dataset.triedFallback;
+        const targetSrc = (data && data.src) ? data.src : (src || '');
+        const targetTitle = (data && data.title) ? data.title : (shortTitle || 'Pick And Place Robot Manipulator');
+        mainImg.src = targetSrc;
+        mainImg.alt = targetTitle;
       }
       const thumbBtns = document.querySelectorAll('.gallery-thumb-btn');
       thumbBtns.forEach((btn, i) => {
@@ -2107,6 +2718,7 @@
       const modalCaption = document.getElementById('modal-image-caption');
 
       if (modal && modalImg && modalTitle && modalCaption && data) {
+        delete modalImg.dataset.triedFallback;
         modalImg.src = data.src;
         modalTitle.innerText = data.title;
         modalCaption.innerText = data.caption;
@@ -2136,6 +2748,9 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeLightbox();
+        if (typeof closeMobileNav === 'function') {
+          closeMobileNav();
+        }
       }
     });
 
@@ -2191,6 +2806,102 @@
       const mailtoUrl = `mailto:masanjitha3@gmail.com?subject=${encodeURIComponent(subject + ' - ' + name)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
       window.location.href = mailtoUrl;
     }
+
+    // Mobile Navigation Drawer Handling
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileNavClose = document.getElementById('mobile-nav-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+    function openMobileNav() {
+      if (!mobileNav || !mobileNavOverlay || !hamburgerBtn) return;
+      hamburgerBtn.classList.add('active');
+      hamburgerBtn.setAttribute('aria-expanded', 'true');
+      mobileNavOverlay.classList.add('active');
+      mobileNav.classList.add('active');
+      mobileNav.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileNav() {
+      if (!mobileNav || !mobileNavOverlay || !hamburgerBtn) return;
+      hamburgerBtn.classList.remove('active');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+      mobileNavOverlay.classList.remove('active');
+      mobileNav.classList.remove('active');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', () => {
+        const isOpen = mobileNav && mobileNav.classList.contains('active');
+        if (isOpen) closeMobileNav();
+        else openMobileNav();
+      });
+    }
+
+    if (mobileNavClose) {
+      mobileNavClose.addEventListener('click', closeMobileNav);
+    }
+
+    if (mobileNavOverlay) {
+      mobileNavOverlay.addEventListener('click', closeMobileNav);
+    }
+
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', closeMobileNav);
+    });
+
+    // Floating Back to Top Button
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 350) {
+          backToTopBtn.classList.add('visible');
+        } else {
+          backToTopBtn.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Active Navigation Scroll-Spy
+    const sections = document.querySelectorAll('section[id]');
+    const desktopNavLinks = document.querySelectorAll('.nav-links .nav-link');
+
+    function updateActiveNav() {
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      sections.forEach(current => {
+        const sectionHeight = current.offsetHeight;
+        const sectionTop = current.offsetTop - 140;
+        const sectionId = current.getAttribute('id');
+
+        if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+          desktopNavLinks.forEach(link => {
+            if (link.getAttribute('href') === '#' + sectionId) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+          mobileNavLinks.forEach(link => {
+            if (link.getAttribute('href') === '#' + sectionId) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
   </script>
 </body>
 </html>
