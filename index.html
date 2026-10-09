@@ -2062,7 +2062,7 @@
               </div>
 
               <!-- Thumbnails Selector -->
-              <div class="gallery-thumbs">
+              <div class="gallery-thumbs" id="robot-gallery-thumbs">
                 <button type="button" class="gallery-thumb-btn active" onclick="switchRobotImage(0, 'robot_hardware_prototype.jpg', 'Physical Prototype: Assembled manipulator arm with acrylic turntable base, servo joints, end-effector gripper, and planar test board.', 'Physical Prototype')">
                   <img src="robot_hardware_prototype.jpg" alt="Physical Hardware Prototype" onerror="handleImgFallback(this)" />
                   <span>1. Prototype</span>
@@ -2180,6 +2180,101 @@
             <div class="project-footer">
               <span style="font-size:0.8rem; color:var(--text-subtle);">Dragon Arrow (Pvt) Ltd</span>
               <span class="project-link" style="cursor:default;">Industry R&D</span>
+            </div>
+          </div>
+
+          <!-- Spotlight Project: Gas Turbine Emission Soft Sensor Pipeline -->
+          <div class="project-card spotlight" data-category="analytics">
+            <!-- Interactive Gallery on Left / Top -->
+            <div class="spotlight-gallery">
+              <div class="gallery-main-view" id="turbine-main-view" onclick="openTurbineLightboxFromMain()" title="Click to expand high-resolution image">
+                <img id="turbine-main-img" src="turbine_soft_sensor_predicted_vs_actual.png" alt="Gas Turbine Soft Sensor - Actual vs Predicted CO Emissions" onerror="handleImgFallback(this)" />
+                <div class="gallery-zoom-hint">
+                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"></path></svg>
+                  <span>Click to Expand</span>
+                </div>
+              </div>
+
+              <!-- Thumbnails Selector -->
+              <div class="gallery-thumbs" id="turbine-gallery-thumbs">
+                <button type="button" class="gallery-thumb-btn active" onclick="switchTurbineImage(0, 'turbine_soft_sensor_predicted_vs_actual.png', 'Soft Sensor Performance: Actual vs Predicted CO Emissions', '1. Accuracy (R² 0.97)')">
+                  <img src="turbine_soft_sensor_predicted_vs_actual.png" alt="Predicted vs Actual CO" onerror="handleImgFallback(this)" />
+                  <span>1. Accuracy (R² 0.97)</span>
+                </button>
+                <button type="button" class="gallery-thumb-btn" onclick="switchTurbineImage(1, 'turbine_sensor_correlation_matrix.png', 'Sensor Correlation Matrix: Multicollinearity Heatmap', '2. Sensor Heatmap')">
+                  <img src="turbine_sensor_correlation_matrix.png" alt="Sensor Correlation Heatmap" onerror="handleImgFallback(this)" />
+                  <span>2. Sensor Heatmap</span>
+                </button>
+                <button type="button" class="gallery-thumb-btn" onclick="switchTurbineImage(2, 'turbine_sensor_drift_degradation.png', 'Simulated Degradation & Drift in Ambient Temperature Sensor', '3. Drift Detection')">
+                  <img src="turbine_sensor_drift_degradation.png" alt="Sensor Drift Simulation" onerror="handleImgFallback(this)" />
+                  <span>3. Drift Detection</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Technical Narrative & Specifications on Right -->
+            <div style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <span class="project-type">AI & Industrial Analytics &bull; Virtual Soft Sensor</span>
+                <h3 class="spotlight-title">Gas Turbine Emission Soft Sensor Pipeline</h3>
+                <p style="font-size:0.95rem; line-height:1.7; margin-bottom:18px;">
+                  Engineered an industrial machine learning soft sensor pipeline to estimate hard-to-measure Carbon Monoxide (CO) emissions from gas turbines operating under high aerodynamic and thermal stress (>3,000 RPM). Bridging physical turbine thermodynamics with statistical modeling, the pipeline simulates sensor degradation drift, deploys unsupervised anomaly detection (Isolation Forest) to isolate corrupted telemetry, eliminates severe multicollinearity via Principal Component Analysis (compressing 12 sensors to 7 components retaining 95% variance), and trains a Random Forest Regressor achieving a 0.9674 R² score.
+                </p>
+
+                <!-- Technical Specifications Grid -->
+                <div class="specs-grid">
+                  <div class="spec-item">
+                    <span class="spec-label">Domain Application</span>
+                    <span class="spec-val">Gas Turbine Emission Soft Sensor (CEMS)</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Fleet Dataset</span>
+                    <span class="spec-val">36,733 Turbine Operational Records</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Anomaly Detection</span>
+                    <span class="spec-val">Isolation Forest (727 Faults Flagged)</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Dimensionality Reduction</span>
+                    <span class="spec-val">PCA (12 Sensors &rarr; 7 PCs, 95% Variance)</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Virtual Estimator</span>
+                    <span class="spec-val">Random Forest Regressor (n=100)</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Validation Accuracy</span>
+                    <span class="spec-val">R² = 0.9674 &bull; MSE = 0.1934</span>
+                  </div>
+                </div>
+
+                <div class="project-tech">
+                  <span class="tech-pill">Python</span>
+                  <span class="tech-pill">Scikit-Learn</span>
+                  <span class="tech-pill">Random Forest Regressor</span>
+                  <span class="tech-pill">Principal Component Analysis (PCA)</span>
+                  <span class="tech-pill">Isolation Forest</span>
+                  <span class="tech-pill">Anomaly Detection</span>
+                  <span class="tech-pill">Sensor Drift Simulation</span>
+                  <span class="tech-pill">Thermodynamic Analysis</span>
+                  <span class="tech-pill">Siemens Energy Practice</span>
+                </div>
+              </div>
+
+              <div class="project-footer" style="margin-top:16px;">
+                <span style="font-size:0.82rem; color:var(--text-subtle);">Siemens Energy Practice · Industrial Analytics</span>
+                <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                  <a href="https://github.com/Asanjitha97/gas-turbine-soft-sensor-pipeline" target="_blank" rel="noopener" class="project-link" style="font-size:0.84rem;">
+                    <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path></svg>
+                    GitHub Repo &rarr;
+                  </a>
+                  <button type="button" class="btn btn-outline" style="padding:6px 16px; font-size:0.84rem;" onclick="openTurbineLightboxFromMain()">
+                    <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    View High-Res Model Validation
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -2702,7 +2797,7 @@
         mainImg.src = targetSrc;
         mainImg.alt = targetTitle;
       }
-      const thumbBtns = document.querySelectorAll('.gallery-thumb-btn');
+      const thumbBtns = document.querySelectorAll('#robot-gallery-thumbs .gallery-thumb-btn');
       thumbBtns.forEach((btn, i) => {
         if (i === index) btn.classList.add('active');
         else btn.classList.remove('active');
@@ -2729,6 +2824,67 @@
 
     function openLightboxFromMain() {
       openLightbox(currentRobotIndex);
+    }
+
+    // Gas Turbine Soft Sensor Gallery & Lightbox
+    const turbineGalleryData = [
+      {
+        src: 'turbine_soft_sensor_predicted_vs_actual.png',
+        title: 'Gas Turbine Soft Sensor — Actual vs Predicted CO Emissions',
+        caption: 'Random Forest Regressor performance on PCA-compressed feature space (7 principal components, 95% variance explained). Achieved R² = 0.9674 and MSE = 0.1934, closely tracking actual physical flue-gas emission measurements across 36,733 records.'
+      },
+      {
+        src: 'turbine_sensor_correlation_matrix.png',
+        title: 'Sensor Correlation Matrix & Multicollinearity Analysis',
+        caption: 'Full Pearson correlation heatmap across 12 turbine sensors (AT, AP, AH, AFDP, GTEP, TIT, TAT, TEY, CDP, CO, NOX), exposing strong multicollinearity (up to 0.99) between compressor discharge pressure, exhaust pressure, and turbine temperatures.'
+      },
+      {
+        src: 'turbine_sensor_drift_degradation.png',
+        title: 'Simulated Degradation & Drift in Ambient Temperature (AT) Sensor',
+        caption: 'Time-series sensor degradation simulation injecting Gaussian drift noise (+15°C, σ=5) to assess machine learning model robustness. An unsupervised Isolation Forest successfully detected and filtered 727 compromised records.'
+      }
+    ];
+
+    let currentTurbineIndex = 0;
+
+    function switchTurbineImage(index, src, caption, shortTitle) {
+      currentTurbineIndex = index;
+      const data = turbineGalleryData[index];
+      const mainImg = document.getElementById('turbine-main-img');
+      if (mainImg) {
+        delete mainImg.dataset.triedFallback;
+        const targetSrc = (data && data.src) ? data.src : (src || '');
+        const targetTitle = (data && data.title) ? data.title : (shortTitle || 'Gas Turbine Soft Sensor Pipeline');
+        mainImg.src = targetSrc;
+        mainImg.alt = targetTitle;
+      }
+      const thumbBtns = document.querySelectorAll('#turbine-gallery-thumbs .gallery-thumb-btn');
+      thumbBtns.forEach((btn, i) => {
+        if (i === index) btn.classList.add('active');
+        else btn.classList.remove('active');
+      });
+    }
+
+    function openTurbineLightbox(index) {
+      currentTurbineIndex = index;
+      const data = turbineGalleryData[index];
+      const modal = document.getElementById('image-modal');
+      const modalImg = document.getElementById('modal-image-src');
+      const modalTitle = document.getElementById('modal-image-title');
+      const modalCaption = document.getElementById('modal-image-caption');
+
+      if (modal && modalImg && modalTitle && modalCaption && data) {
+        delete modalImg.dataset.triedFallback;
+        modalImg.src = data.src;
+        modalTitle.innerText = data.title;
+        modalCaption.innerText = data.caption;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function openTurbineLightboxFromMain() {
+      openTurbineLightbox(currentTurbineIndex);
     }
 
     function closeLightbox() {
